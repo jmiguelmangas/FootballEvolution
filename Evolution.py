@@ -24,21 +24,24 @@ best_in_europe_22_23.reset_index(inplace=True)
 best_in_europe_21_22 = best_in_europe_21_22.drop(["Rk","index"],axis=1)
 best_in_europe_22_23 = best_in_europe_22_23.drop(["Rk","index"],axis=1)
 
-print(best_in_europe_21_22)
-print(best_in_europe_22_23)
+best_in_europe_22_23["Goals"] = best_in_europe_22_23["Goals"]/best_in_europe_22_23["MP"]
 
 goals_shoot_21_22 = best_in_europe_21_22[["Player","Shots","Goals","SoT","PasAss","GCA","DriSucc"]]
 goals_shoot_22_23 = best_in_europe_22_23[["Player","Shots","Goals","SoT","PasAss","GCA","ToSuc"]]
 
+goals_shoot_22_23 = goals_shoot_22_23.rename(columns={'ToSuc': 'DriSucc'})
 
-print(goals_shoot_21_22)
-print(goals_shoot_22_23)
-
+colums21_22 = ["Player","Shots2122","Goals2122","SoT2122","PasAss2122","GCA2122","DriSucc2122"]
+colums22_23 = ["Player","Shots2223","Goals2223","SoT2223","PasAss2223","GCA2223","DriSucc2223"]
+goals_shoot_21_22.columns = colums21_22
+goals_shoot_22_23.columns = colums22_23
 goals_shoot_21_22.set_index("Player",inplace=True)
 goals_shoot_22_23.set_index("Player",inplace=True)
 
-goals_shoot_21_22.plot(kind="barh")
 
-goals_shoot_22_23.plot(kind="barh")
 
+
+result=pd.merge(goals_shoot_21_22,goals_shoot_22_23, on="Player")
+result=result[["Shots2122","Shots2223","Goals2122","Goals2223","SoT2122","SoT2223","PasAss2122","PasAss2223","GCA2122","GCA2223","DriSucc2122","DriSucc2223"]]
+result.plot(kind="bar")
 plt.show()
