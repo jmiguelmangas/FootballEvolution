@@ -27,7 +27,7 @@ best_in_europe_22_23 = best_in_europe_22_23.drop(["Rk","index"],axis=1)
 print(best_in_europe_21_22)
 print(best_in_europe_22_23)
 
-goals_shoot_21_22 = best_in_europe_21_22[["Player","Shots","Goals","SoT","PasAss","GCA","DriSucc"]]
+goals_shoot_22_23 = best_in_europe_21_22[["Player","Shots","Goals","SoT","PasAss","GCA","DriSucc"]]
 
 goals_shoot_21_22.set_index("Player",inplace=True)
 
