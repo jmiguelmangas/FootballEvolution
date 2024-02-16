@@ -44,4 +44,6 @@ goals_shoot_22_23.set_index("Player",inplace=True)
 result=pd.merge(goals_shoot_21_22,goals_shoot_22_23, on="Player")
 result=result[["Shots2122","Shots2223","Goals2122","Goals2223","SoT2122","SoT2223","PasAss2122","PasAss2223","GCA2122","GCA2223","DriSucc2122","DriSucc2223"]]
 result.plot(kind="bar")
+
+result.to_csv("results.csv")
 plt.show()
